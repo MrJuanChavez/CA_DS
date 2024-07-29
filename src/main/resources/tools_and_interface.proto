@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "generated.tools_and_interface";
+option java_outer_classname = "tools_and_interfaceImpl";
+
+package tools_and_interface;
+
+// Interface exported by the server.
+service tools_and_interface {
+  
+  rpc greetings(stream RequestMessage) returns (stream ResponseMessage) {}
+  rpc reminders (stream personalInfo) returns (confirmationResponse) {}
+  
+}
+
+message RequestMessage {
+  string name = 1;
+  string insuranceComp = 2;
+  string urgencyLvl = 3;
+}
+
+message ResponseMessage {
+  string greetingText = 1;
+  string name = 2;
+  bool confirmInComp = 3;
+  int32 roomTime = 4;
+}
+
+message personalInfo {
+	string drug = 1;
+	string remindDate = 2;
+}
+
+message confirmationResponse {
+	bool confirmed = 1;
+}
