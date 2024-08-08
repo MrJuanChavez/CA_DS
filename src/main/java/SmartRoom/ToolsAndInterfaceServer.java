@@ -17,7 +17,7 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 	public static void main (String [] args) {
 		ToolsAndInterfaceServer controls = new ToolsAndInterfaceServer();
 		
-		int port = 4200;
+		int port = 4201;
 		
 		try {
 			Server server = ServerBuilder.forPort(port)
@@ -59,9 +59,11 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 				boolean confirmInComp = true;
 				int roomTime;
 				
-				if(insuranceComp.equals("N/A") || urgencyLvl.equals("low")) {
+				if(insuranceComp.equals("N/A")) {
 					confirmInComp = false;
 					roomTime = 7;
+				}else if(urgencyLvl.equals("low")){
+					roomTime = 10;
 				} else if (urgencyLvl.equals("medium")) {
 					roomTime = 12;
 				} else {

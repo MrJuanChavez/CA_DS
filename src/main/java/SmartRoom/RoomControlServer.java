@@ -23,7 +23,7 @@ public class RoomControlServer extends Room_controlImplBase{
 				    .build()
 				    .start();
 				
-			System.out.println(" Server started, listening on" + port);
+			System.out.println(" Server started, listening on " + port);
 			server.awaitTermination();
 				 
 				 
@@ -43,9 +43,9 @@ public class RoomControlServer extends Room_controlImplBase{
 		System.out.println("receiving" + intensityLvl.getLevel());
 		
 		int intensity = 1;
-		String location = "St.James";
+		String location = "Reception";
 		
-		intensity = intensity + intensityLvl.getLevel();
+		intensity = intensityLvl.getLevel();
 		
 		lightsIntensity response = lightsIntensity.newBuilder().setNewLvl(intensity).setLocation(location).build();
 		
@@ -57,7 +57,7 @@ public class RoomControlServer extends Room_controlImplBase{
 			e.printStackTrace();
 		}
 		
-		location = "St.Jude";
+		location = "Toilet";
 		response = lightsIntensity.newBuilder().setNewLvl(intensity).setLocation(location).build();
 		
 		responseIntensity.onNext(response);
@@ -68,7 +68,7 @@ public class RoomControlServer extends Room_controlImplBase{
 			e.printStackTrace();
 		}
 		
-		location = "St.Joseph";
+		location = "Bed area";
 		response = lightsIntensity.newBuilder().setNewLvl(intensity).setLocation(location).build();
 		
 		responseIntensity.onNext(response);

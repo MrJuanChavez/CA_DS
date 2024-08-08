@@ -39,11 +39,18 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.rmi.UnknownHostException;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceInfo;
+import javax.jmdns.ServiceListener;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -69,20 +76,57 @@ public class SmartRoomGUI extends JFrame {
 	String insuranceComp;
 	String urgencyLvl;
 	ArrayList <String> PreGreeting = new ArrayList<>();
+public static class SampleListener implements ServiceListener {
 
+	@Override
+	public void serviceAdded(ServiceEvent event) {
+		// TODO Auto-generated method stub
+		System.out.print("Service added: " + event.getName());
+	}
+
+	@Override
+	public void serviceRemoved(ServiceEvent event) {
+		// TODO Auto-generated method stub
+		System.out.print("Service removed: " + event.getName());
+	}
+
+	@Override
+	public void serviceResolved(ServiceEvent event) {
+		// TODO Auto-generated method stub
+		System.out.print("Service resolved: " + event.getName());
+		
+		ServiceInfo info = event.getInfo();
+		int port = info.getPort();
+		String path = info.getNiceTextString().split("=")[1];
+	}
+	
+}
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
-		ManagedChannel channel = ManagedChannelBuilder.forAddress("localHost", 4200)
+		try {
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			jmdns.addServiceListener("_grpc._tcp.local.", new SampleListener());
+			
+		ManagedChannel RoomControlChannel = ManagedChannelBuilder
+				.forAddress("localhost", 4200)
 				.usePlaintext()
 				.build();
-		asyncRoom_controlStub = Room_controlGrpc.newStub(channel);
-		blockingRoom_controlStub = Room_controlGrpc.newBlockingStub(channel);
-		asynctools_and_interfaceStub = tools_and_interfaceGrpc.newStub(channel);
-		asyncSmart_IntravenousStub = Smart_IntravenousGrpc.newStub(channel);
+		ManagedChannel ToolsAndInterfaceChannel = ManagedChannelBuilder
+				.forAddress("localhost", 4201)
+				.usePlaintext()
+				.build();
+		ManagedChannel SmartIntravenousChannel = ManagedChannelBuilder
+				.forAddress("localHost", 4202)
+				.usePlaintext()
+				.build();
+				
+		asyncRoom_controlStub = Room_controlGrpc.newStub(RoomControlChannel);
+		blockingRoom_controlStub = Room_controlGrpc.newBlockingStub(RoomControlChannel);
+		asynctools_and_interfaceStub = tools_and_interfaceGrpc.newStub(ToolsAndInterfaceChannel);
+		asyncSmart_IntravenousStub = Smart_IntravenousGrpc.newStub(SmartIntravenousChannel);
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -94,7 +138,12 @@ public class SmartRoomGUI extends JFrame {
 				}
 			}
 		});
+	}catch(UnknownHostException e){
+		System.out.println(e.getMessage());
+	}catch(IOException e){
+		System.out.println(e.getMessage());
 	}
+}
 
 	/**
 	 * Create the frame.
@@ -352,7 +401,7 @@ public class SmartRoomGUI extends JFrame {
 		sendStatusBtn.setBounds(10, 162, 96, 21);
 		panel_2.add(sendStatusBtn);
 		
-		//temperature(S1txtArea);
+		temperature(S1txtArea);
 		
 		JList list = new JList();
 		list.setBounds(480, 88, 1, 1);

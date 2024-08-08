@@ -16,7 +16,7 @@ public class SmartIntravenousServer extends Smart_IntravenousImplBase {
 	public static void main(String[] args) {
 		SmartIntravenousServer controls = new SmartIntravenousServer();
 
-		int port = 4200;
+		int port = 4202;
 
 		try {
 			Server server = ServerBuilder.forPort(port).addService(controls).build().start();
