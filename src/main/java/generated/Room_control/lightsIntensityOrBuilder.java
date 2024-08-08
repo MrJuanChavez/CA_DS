@@ -8,9 +8,9 @@ public interface lightsIntensityOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 length = 1;</code>
+   * <code>int32 newLvl = 1;</code>
    */
-  int getLength();
+  int getNewLvl();
 
   /**
    * <code>string location = 2;</code>

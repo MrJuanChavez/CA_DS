@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private personalInfo() {
-    drug_ = "";
+    eventRmnd_ = "";
     remindDate_ = "";
   }
 
@@ -47,7 +47,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            drug_ = s;
+            eventRmnd_ = s;
             break;
           }
           case 18: {
@@ -88,34 +88,34 @@ private static final long serialVersionUID = 0L;
             generated.tools_and_interface.personalInfo.class, generated.tools_and_interface.personalInfo.Builder.class);
   }
 
-  public static final int DRUG_FIELD_NUMBER = 1;
-  private volatile java.lang.Object drug_;
+  public static final int EVENTRMND_FIELD_NUMBER = 1;
+  private volatile java.lang.Object eventRmnd_;
   /**
-   * <code>string drug = 1;</code>
+   * <code>string eventRmnd = 1;</code>
    */
-  public java.lang.String getDrug() {
-    java.lang.Object ref = drug_;
+  public java.lang.String getEventRmnd() {
+    java.lang.Object ref = eventRmnd_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      drug_ = s;
+      eventRmnd_ = s;
       return s;
     }
   }
   /**
-   * <code>string drug = 1;</code>
+   * <code>string eventRmnd = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getDrugBytes() {
-    java.lang.Object ref = drug_;
+      getEventRmndBytes() {
+    java.lang.Object ref = eventRmnd_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      drug_ = b;
+      eventRmnd_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -170,8 +170,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getDrugBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, drug_);
+    if (!getEventRmndBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, eventRmnd_);
     }
     if (!getRemindDateBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, remindDate_);
@@ -185,8 +185,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getDrugBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, drug_);
+    if (!getEventRmndBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, eventRmnd_);
     }
     if (!getRemindDateBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, remindDate_);
@@ -207,8 +207,8 @@ private static final long serialVersionUID = 0L;
     generated.tools_and_interface.personalInfo other = (generated.tools_and_interface.personalInfo) obj;
 
     boolean result = true;
-    result = result && getDrug()
-        .equals(other.getDrug());
+    result = result && getEventRmnd()
+        .equals(other.getEventRmnd());
     result = result && getRemindDate()
         .equals(other.getRemindDate());
     result = result && unknownFields.equals(other.unknownFields);
@@ -222,8 +222,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + DRUG_FIELD_NUMBER;
-    hash = (53 * hash) + getDrug().hashCode();
+    hash = (37 * hash) + EVENTRMND_FIELD_NUMBER;
+    hash = (53 * hash) + getEventRmnd().hashCode();
     hash = (37 * hash) + REMINDDATE_FIELD_NUMBER;
     hash = (53 * hash) + getRemindDate().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -359,7 +359,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      drug_ = "";
+      eventRmnd_ = "";
 
       remindDate_ = "";
 
@@ -389,7 +389,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public generated.tools_and_interface.personalInfo buildPartial() {
       generated.tools_and_interface.personalInfo result = new generated.tools_and_interface.personalInfo(this);
-      result.drug_ = drug_;
+      result.eventRmnd_ = eventRmnd_;
       result.remindDate_ = remindDate_;
       onBuilt();
       return result;
@@ -439,8 +439,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(generated.tools_and_interface.personalInfo other) {
       if (other == generated.tools_and_interface.personalInfo.getDefaultInstance()) return this;
-      if (!other.getDrug().isEmpty()) {
-        drug_ = other.drug_;
+      if (!other.getEventRmnd().isEmpty()) {
+        eventRmnd_ = other.eventRmnd_;
         onChanged();
       }
       if (!other.getRemindDate().isEmpty()) {
@@ -476,71 +476,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object drug_ = "";
+    private java.lang.Object eventRmnd_ = "";
     /**
-     * <code>string drug = 1;</code>
+     * <code>string eventRmnd = 1;</code>
      */
-    public java.lang.String getDrug() {
-      java.lang.Object ref = drug_;
+    public java.lang.String getEventRmnd() {
+      java.lang.Object ref = eventRmnd_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        drug_ = s;
+        eventRmnd_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string drug = 1;</code>
+     * <code>string eventRmnd = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDrugBytes() {
-      java.lang.Object ref = drug_;
+        getEventRmndBytes() {
+      java.lang.Object ref = eventRmnd_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        drug_ = b;
+        eventRmnd_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string drug = 1;</code>
+     * <code>string eventRmnd = 1;</code>
      */
-    public Builder setDrug(
+    public Builder setEventRmnd(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      drug_ = value;
+      eventRmnd_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string drug = 1;</code>
+     * <code>string eventRmnd = 1;</code>
      */
-    public Builder clearDrug() {
+    public Builder clearEventRmnd() {
       
-      drug_ = getDefaultInstance().getDrug();
+      eventRmnd_ = getDefaultInstance().getEventRmnd();
       onChanged();
       return this;
     }
     /**
-     * <code>string drug = 1;</code>
+     * <code>string eventRmnd = 1;</code>
      */
-    public Builder setDrugBytes(
+    public Builder setEventRmndBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      drug_ = value;
+      eventRmnd_ = value;
       onChanged();
       return this;
     }

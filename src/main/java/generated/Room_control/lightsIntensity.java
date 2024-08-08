@@ -16,7 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private lightsIntensity() {
-    length_ = 0;
+    newLvl_ = 0;
     location_ = "";
   }
 
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
             break;
           case 8: {
 
-            length_ = input.readInt32();
+            newLvl_ = input.readInt32();
             break;
           }
           case 18: {
@@ -87,13 +87,13 @@ private static final long serialVersionUID = 0L;
             generated.Room_control.lightsIntensity.class, generated.Room_control.lightsIntensity.Builder.class);
   }
 
-  public static final int LENGTH_FIELD_NUMBER = 1;
-  private int length_;
+  public static final int NEWLVL_FIELD_NUMBER = 1;
+  private int newLvl_;
   /**
-   * <code>int32 length = 1;</code>
+   * <code>int32 newLvl = 1;</code>
    */
-  public int getLength() {
-    return length_;
+  public int getNewLvl() {
+    return newLvl_;
   }
 
   public static final int LOCATION_FIELD_NUMBER = 2;
@@ -144,8 +144,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (length_ != 0) {
-      output.writeInt32(1, length_);
+    if (newLvl_ != 0) {
+      output.writeInt32(1, newLvl_);
     }
     if (!getLocationBytes().isEmpty()) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, location_);
@@ -159,9 +159,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (length_ != 0) {
+    if (newLvl_ != 0) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, length_);
+        .computeInt32Size(1, newLvl_);
     }
     if (!getLocationBytes().isEmpty()) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, location_);
@@ -182,8 +182,8 @@ private static final long serialVersionUID = 0L;
     generated.Room_control.lightsIntensity other = (generated.Room_control.lightsIntensity) obj;
 
     boolean result = true;
-    result = result && (getLength()
-        == other.getLength());
+    result = result && (getNewLvl()
+        == other.getNewLvl());
     result = result && getLocation()
         .equals(other.getLocation());
     result = result && unknownFields.equals(other.unknownFields);
@@ -197,8 +197,8 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + LENGTH_FIELD_NUMBER;
-    hash = (53 * hash) + getLength();
+    hash = (37 * hash) + NEWLVL_FIELD_NUMBER;
+    hash = (53 * hash) + getNewLvl();
     hash = (37 * hash) + LOCATION_FIELD_NUMBER;
     hash = (53 * hash) + getLocation().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
@@ -334,7 +334,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      length_ = 0;
+      newLvl_ = 0;
 
       location_ = "";
 
@@ -364,7 +364,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public generated.Room_control.lightsIntensity buildPartial() {
       generated.Room_control.lightsIntensity result = new generated.Room_control.lightsIntensity(this);
-      result.length_ = length_;
+      result.newLvl_ = newLvl_;
       result.location_ = location_;
       onBuilt();
       return result;
@@ -414,8 +414,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(generated.Room_control.lightsIntensity other) {
       if (other == generated.Room_control.lightsIntensity.getDefaultInstance()) return this;
-      if (other.getLength() != 0) {
-        setLength(other.getLength());
+      if (other.getNewLvl() != 0) {
+        setNewLvl(other.getNewLvl());
       }
       if (!other.getLocation().isEmpty()) {
         location_ = other.location_;
@@ -450,28 +450,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int length_ ;
+    private int newLvl_ ;
     /**
-     * <code>int32 length = 1;</code>
+     * <code>int32 newLvl = 1;</code>
      */
-    public int getLength() {
-      return length_;
+    public int getNewLvl() {
+      return newLvl_;
     }
     /**
-     * <code>int32 length = 1;</code>
+     * <code>int32 newLvl = 1;</code>
      */
-    public Builder setLength(int value) {
+    public Builder setNewLvl(int value) {
       
-      length_ = value;
+      newLvl_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>int32 length = 1;</code>
+     * <code>int32 newLvl = 1;</code>
      */
-    public Builder clearLength() {
+    public Builder clearNewLvl() {
       
-      length_ = 0;
+      newLvl_ = 0;
       onChanged();
       return this;
     }

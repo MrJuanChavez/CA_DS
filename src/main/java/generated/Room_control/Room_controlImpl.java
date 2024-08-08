@@ -45,7 +45,7 @@ public final class Room_controlImpl {
     java.lang.String[] descriptorData = {
       "\n\022Room_control.proto\022\014Room_control\" \n\017ch" +
       "angeIntensity\022\r\n\005level\030\001 \001(\005\"3\n\017lightsIn" +
-      "tensity\022\016\n\006length\030\001 \001(\005\022\020\n\010location\030\002 \001(" +
+      "tensity\022\016\n\006newLvl\030\001 \001(\005\022\020\n\010location\030\002 \001(" +
       "\t\"!\n\021adjustTemperature\022\014\n\004temp\030\001 \001(\005\"!\n\016" +
       "newTemperature\022\017\n\007newTemp\030\001 \001(\0052\252\001\n\014Room" +
       "_control\022J\n\006lights\022\035.Room_control.change" +
@@ -78,7 +78,7 @@ public final class Room_controlImpl {
     internal_static_Room_control_lightsIntensity_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Room_control_lightsIntensity_descriptor,
-        new java.lang.String[] { "Length", "Location", });
+        new java.lang.String[] { "NewLvl", "Location", });
     internal_static_Room_control_adjustTemperature_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_Room_control_adjustTemperature_fieldAccessorTable = new

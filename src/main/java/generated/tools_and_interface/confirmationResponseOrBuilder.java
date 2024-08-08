@@ -8,7 +8,12 @@ public interface confirmationResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool confirmed = 1;</code>
+   * <code>string confirmed = 1;</code>
    */
-  boolean getConfirmed();
+  java.lang.String getConfirmed();
+  /**
+   * <code>string confirmed = 1;</code>
+   */
+  com.google.protobuf.ByteString
+      getConfirmedBytes();
 }

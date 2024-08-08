@@ -21,7 +21,7 @@ message changeIntensity {
 }
 
 message lightsIntensity {
-  int32 length = 1;
+  int32 newLvl = 1;
   string location = 2; 
 }
 

@@ -1,6 +1,7 @@
 package SmartRoom;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import generated.tools_and_interface.RequestMessage;
 import generated.tools_and_interface.ResponseMessage;
@@ -23,9 +24,9 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 				    .addService(controls)
 				    .build()
 				    .start();
-				
+				System.out.println(" Server started, listening on " + port);
 				 server.awaitTermination();
-				 System.out.println(" Server started, listening on" + port);
+				 
 				 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -39,8 +40,9 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 		   
 	}
 
-	@Override
+	
 	public StreamObserver<RequestMessage> greetings (StreamObserver<ResponseMessage> responseGreeting ){
+		ArrayList <String> Welcome = new ArrayList<>();
 		return new StreamObserver <RequestMessage>() {
 			
 			@Override
@@ -57,10 +59,10 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 				boolean confirmInComp = true;
 				int roomTime;
 				
-				if(insuranceComp == "N/A" && urgencyLvl == "low") {
+				if(insuranceComp.equals("N/A") || urgencyLvl.equals("low")) {
 					confirmInComp = false;
 					roomTime = 7;
-				} else if (urgencyLvl == "medium") {
+				} else if (urgencyLvl.equals("medium")) {
 					roomTime = 12;
 				} else {
 					roomTime = 15;
@@ -113,15 +115,21 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 	
 }*/
 
-	@Override
+	
 	public StreamObserver<personalInfo> reminders(StreamObserver<confirmationResponse> responseObserver){
+		ArrayList<String>events = new ArrayList<>();
+		
 		return new StreamObserver <personalInfo>() {
-			
 			@Override
 			public void onNext(personalInfo info) {
-				System.out.printf("Received drug: %s, remindDate: %s%n", 
-						info.getDrug(),
-						info.getRemindDate());
+				String NewEvent = info.getEventRmnd();
+				String NewDate = info.getRemindDate();
+				events.add(NewEvent);
+				events.add(NewDate);
+				
+				/*System.out.printf("Received event: %s, remindDate: %s%n", 
+						info.getEventRmnd(),
+						info.getRemindDate());*/
 			}
 			
 			@Override
@@ -132,9 +140,19 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 			
 			@Override
 			public void onCompleted() {
+				StringBuffer confirmation = new StringBuffer();
+				for(int i=0; i < events.size(); i++) {
+					if(i % 2 == 0 || i == 0)
+					confirmation.append("Received: " + events.get(i) + "\n");
+					else {
+						confirmation.append("Remind date: " + events.get(i) + "\n");
+						}
+					}
+				String ConfMessage = confirmation.toString();
 				confirmationResponse response = confirmationResponse.newBuilder()
-						.setConfirmed(true)
+						.setConfirmed(ConfMessage)
 						.build();
+				
 			
 			responseObserver.onNext(response);
 			responseObserver.onCompleted();

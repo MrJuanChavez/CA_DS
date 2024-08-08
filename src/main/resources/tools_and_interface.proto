@@ -28,10 +28,10 @@ message ResponseMessage {
 }
 
 message personalInfo {
-	string drug = 1;
+	string eventRmnd = 1;
 	string remindDate = 2;
 }
 
 message confirmationResponse {
-	bool confirmed = 1;
+	string confirmed = 1;
 }

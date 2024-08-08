@@ -23,8 +23,9 @@ public class RoomControlServer extends Room_controlImplBase{
 				    .build()
 				    .start();
 				
-				 server.awaitTermination();
-				 System.out.println(" Server started, listening on" + port);
+			System.out.println(" Server started, listening on" + port);
+			server.awaitTermination();
+				 
 				 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -46,7 +47,7 @@ public class RoomControlServer extends Room_controlImplBase{
 		
 		intensity = intensity + intensityLvl.getLevel();
 		
-		lightsIntensity response = lightsIntensity.newBuilder().setLength(intensity).setLocation(location).build();
+		lightsIntensity response = lightsIntensity.newBuilder().setNewLvl(intensity).setLocation(location).build();
 		
 		responseIntensity.onNext(response);
 		try {
@@ -57,18 +58,18 @@ public class RoomControlServer extends Room_controlImplBase{
 		}
 		
 		location = "St.Jude";
-		response = lightsIntensity.newBuilder().setLength(intensity).setLocation(location).build();
+		response = lightsIntensity.newBuilder().setNewLvl(intensity).setLocation(location).build();
 		
 		responseIntensity.onNext(response);
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		location = "St.Joseph";
-		response = lightsIntensity.newBuilder().setLength(intensity).setLocation(location).build();
+		response = lightsIntensity.newBuilder().setNewLvl(intensity).setLocation(location).build();
 		
 		responseIntensity.onNext(response);
 		try {

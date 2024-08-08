@@ -8,14 +8,14 @@ public interface personalInfoOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string drug = 1;</code>
+   * <code>string eventRmnd = 1;</code>
    */
-  java.lang.String getDrug();
+  java.lang.String getEventRmnd();
   /**
-   * <code>string drug = 1;</code>
+   * <code>string eventRmnd = 1;</code>
    */
   com.google.protobuf.ByteString
-      getDrugBytes();
+      getEventRmndBytes();
 
   /**
    * <code>string remindDate = 2;</code>
