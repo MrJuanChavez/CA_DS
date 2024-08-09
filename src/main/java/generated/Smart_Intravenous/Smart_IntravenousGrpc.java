@@ -1,19 +1,6 @@
 package generated.Smart_Intravenous;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+    value = "by gRPC proto compiler (version 1.54.0)",
     comments = "Source: Smart_Intravenous.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class Smart_IntravenousGrpc {
 
   private Smart_IntravenousGrpc() {}
@@ -44,22 +32,21 @@ public final class Smart_IntravenousGrpc {
     if ((getSetFlowRMethod = Smart_IntravenousGrpc.getSetFlowRMethod) == null) {
       synchronized (Smart_IntravenousGrpc.class) {
         if ((getSetFlowRMethod = Smart_IntravenousGrpc.getSetFlowRMethod) == null) {
-          Smart_IntravenousGrpc.getSetFlowRMethod = getSetFlowRMethod = 
+          Smart_IntravenousGrpc.getSetFlowRMethod = getSetFlowRMethod =
               io.grpc.MethodDescriptor.<generated.Smart_Intravenous.flowRate, generated.Smart_Intravenous.confirmFRate>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "Smart_Intravenous.Smart_Intravenous", "setFlowR"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "setFlowR"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Smart_Intravenous.flowRate.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Smart_Intravenous.confirmFRate.getDefaultInstance()))
-                  .setSchemaDescriptor(new Smart_IntravenousMethodDescriptorSupplier("setFlowR"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Smart_IntravenousMethodDescriptorSupplier("setFlowR"))
+              .build();
         }
-     }
-     return getSetFlowRMethod;
+      }
+    }
+    return getSetFlowRMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<generated.Smart_Intravenous.sendStatus,
@@ -76,29 +63,35 @@ public final class Smart_IntravenousGrpc {
     if ((getAlertDoseMethod = Smart_IntravenousGrpc.getAlertDoseMethod) == null) {
       synchronized (Smart_IntravenousGrpc.class) {
         if ((getAlertDoseMethod = Smart_IntravenousGrpc.getAlertDoseMethod) == null) {
-          Smart_IntravenousGrpc.getAlertDoseMethod = getAlertDoseMethod = 
+          Smart_IntravenousGrpc.getAlertDoseMethod = getAlertDoseMethod =
               io.grpc.MethodDescriptor.<generated.Smart_Intravenous.sendStatus, generated.Smart_Intravenous.alertMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "Smart_Intravenous.Smart_Intravenous", "alertDose"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "alertDose"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Smart_Intravenous.sendStatus.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Smart_Intravenous.alertMessage.getDefaultInstance()))
-                  .setSchemaDescriptor(new Smart_IntravenousMethodDescriptorSupplier("alertDose"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Smart_IntravenousMethodDescriptorSupplier("alertDose"))
+              .build();
         }
-     }
-     return getAlertDoseMethod;
+      }
+    }
+    return getAlertDoseMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static Smart_IntravenousStub newStub(io.grpc.Channel channel) {
-    return new Smart_IntravenousStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Smart_IntravenousStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Smart_IntravenousStub>() {
+        @java.lang.Override
+        public Smart_IntravenousStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Smart_IntravenousStub(channel, callOptions);
+        }
+      };
+    return Smart_IntravenousStub.newStub(factory, channel);
   }
 
   /**
@@ -106,7 +99,14 @@ public final class Smart_IntravenousGrpc {
    */
   public static Smart_IntravenousBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new Smart_IntravenousBlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Smart_IntravenousBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Smart_IntravenousBlockingStub>() {
+        @java.lang.Override
+        public Smart_IntravenousBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Smart_IntravenousBlockingStub(channel, callOptions);
+        }
+      };
+    return Smart_IntravenousBlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -114,7 +114,14 @@ public final class Smart_IntravenousGrpc {
    */
   public static Smart_IntravenousFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new Smart_IntravenousFutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Smart_IntravenousFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Smart_IntravenousFutureStub>() {
+        @java.lang.Override
+        public Smart_IntravenousFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Smart_IntravenousFutureStub(channel, callOptions);
+        }
+      };
+    return Smart_IntravenousFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -122,60 +129,53 @@ public final class Smart_IntravenousGrpc {
    * Interface exported by the server.
    * </pre>
    */
-  public static abstract class Smart_IntravenousImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void setFlowR(generated.Smart_Intravenous.flowRate request,
+    default void setFlowR(generated.Smart_Intravenous.flowRate request,
         io.grpc.stub.StreamObserver<generated.Smart_Intravenous.confirmFRate> responseObserver) {
-      asyncUnimplementedUnaryCall(getSetFlowRMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetFlowRMethod(), responseObserver);
     }
 
     /**
      */
-    public void alertDose(generated.Smart_Intravenous.sendStatus request,
+    default void alertDose(generated.Smart_Intravenous.sendStatus request,
         io.grpc.stub.StreamObserver<generated.Smart_Intravenous.alertMessage> responseObserver) {
-      asyncUnimplementedUnaryCall(getAlertDoseMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getAlertDoseMethod(), responseObserver);
     }
+  }
+
+  /**
+   * Base class for the server implementation of the service Smart_Intravenous.
+   * <pre>
+   * Interface exported by the server.
+   * </pre>
+   */
+  public static abstract class Smart_IntravenousImplBase
+      implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getSetFlowRMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                generated.Smart_Intravenous.flowRate,
-                generated.Smart_Intravenous.confirmFRate>(
-                  this, METHODID_SET_FLOW_R)))
-          .addMethod(
-            getAlertDoseMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                generated.Smart_Intravenous.sendStatus,
-                generated.Smart_Intravenous.alertMessage>(
-                  this, METHODID_ALERT_DOSE)))
-          .build();
+      return Smart_IntravenousGrpc.bindService(this);
     }
   }
 
   /**
+   * A stub to allow clients to do asynchronous rpc calls to service Smart_Intravenous.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class Smart_IntravenousStub extends io.grpc.stub.AbstractStub<Smart_IntravenousStub> {
-    private Smart_IntravenousStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Smart_IntravenousStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Smart_IntravenousStub
+      extends io.grpc.stub.AbstractAsyncStub<Smart_IntravenousStub> {
+    private Smart_IntravenousStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Smart_IntravenousStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Smart_IntravenousStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Smart_IntravenousStub(channel, callOptions);
     }
 
@@ -183,7 +183,7 @@ public final class Smart_IntravenousGrpc {
      */
     public void setFlowR(generated.Smart_Intravenous.flowRate request,
         io.grpc.stub.StreamObserver<generated.Smart_Intravenous.confirmFRate> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getSetFlowRMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -191,65 +191,61 @@ public final class Smart_IntravenousGrpc {
      */
     public void alertDose(generated.Smart_Intravenous.sendStatus request,
         io.grpc.stub.StreamObserver<generated.Smart_Intravenous.alertMessage> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getAlertDoseMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Smart_Intravenous.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class Smart_IntravenousBlockingStub extends io.grpc.stub.AbstractStub<Smart_IntravenousBlockingStub> {
-    private Smart_IntravenousBlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Smart_IntravenousBlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Smart_IntravenousBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<Smart_IntravenousBlockingStub> {
+    private Smart_IntravenousBlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Smart_IntravenousBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Smart_IntravenousBlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Smart_IntravenousBlockingStub(channel, callOptions);
     }
 
     /**
      */
     public generated.Smart_Intravenous.confirmFRate setFlowR(generated.Smart_Intravenous.flowRate request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getSetFlowRMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public generated.Smart_Intravenous.alertMessage alertDose(generated.Smart_Intravenous.sendStatus request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getAlertDoseMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Smart_Intravenous.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class Smart_IntravenousFutureStub extends io.grpc.stub.AbstractStub<Smart_IntravenousFutureStub> {
-    private Smart_IntravenousFutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Smart_IntravenousFutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Smart_IntravenousFutureStub
+      extends io.grpc.stub.AbstractFutureStub<Smart_IntravenousFutureStub> {
+    private Smart_IntravenousFutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Smart_IntravenousFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Smart_IntravenousFutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Smart_IntravenousFutureStub(channel, callOptions);
     }
 
@@ -257,7 +253,7 @@ public final class Smart_IntravenousGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<generated.Smart_Intravenous.confirmFRate> setFlowR(
         generated.Smart_Intravenous.flowRate request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getSetFlowRMethod(), getCallOptions()), request);
     }
 
@@ -265,7 +261,7 @@ public final class Smart_IntravenousGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<generated.Smart_Intravenous.alertMessage> alertDose(
         generated.Smart_Intravenous.sendStatus request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getAlertDoseMethod(), getCallOptions()), request);
     }
   }
@@ -278,10 +274,10 @@ public final class Smart_IntravenousGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final Smart_IntravenousImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(Smart_IntravenousImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -312,6 +308,25 @@ public final class Smart_IntravenousGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getSetFlowRMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              generated.Smart_Intravenous.flowRate,
+              generated.Smart_Intravenous.confirmFRate>(
+                service, METHODID_SET_FLOW_R)))
+        .addMethod(
+          getAlertDoseMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              generated.Smart_Intravenous.sendStatus,
+              generated.Smart_Intravenous.alertMessage>(
+                service, METHODID_ALERT_DOSE)))
+        .build();
   }
 
   private static abstract class Smart_IntravenousBaseDescriptorSupplier

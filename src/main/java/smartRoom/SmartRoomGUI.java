@@ -1,4 +1,4 @@
-package SmartRoom;
+package smartRoom;
 
 import java.awt.EventQueue;
 
@@ -30,6 +30,8 @@ import generated.tools_and_interface.tools_and_interfaceGrpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -39,18 +41,18 @@ import javax.swing.JTextArea;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.rmi.UnknownHostException;
+import java.io.IOException; //import for JmDNS
+import java.net.InetAddress; //import for JmDNS
+import java.rmi.UnknownHostException; //import for JmDNS
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
-import javax.jmdns.JmDNS;
-import javax.jmdns.ServiceEvent;
-import javax.jmdns.ServiceInfo;
-import javax.jmdns.ServiceListener;
+import javax.jmdns.JmDNS; //import for JmDNS
+import javax.jmdns.ServiceEvent;//import for JmDNS
+import javax.jmdns.ServiceInfo;//import for JmDNS
+import javax.jmdns.ServiceListener;//import for JmDNS
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.border.EtchedBorder;
 import java.awt.Color;
@@ -69,6 +71,7 @@ public class SmartRoomGUI extends JFrame {
 	private JTextField dateFld;
 	private JTextField nameFld;
 	private JTextField insuranceCoFld;
+	//Declare Variables and ArrayList 
 	String event;
 	String date;
 	ArrayList <String> PreEvent = new ArrayList<>();
@@ -76,6 +79,7 @@ public class SmartRoomGUI extends JFrame {
 	String insuranceComp;
 	String urgencyLvl;
 	ArrayList <String> PreGreeting = new ArrayList<>();
+	
 public static class SampleListener implements ServiceListener {
 
 	@Override
@@ -93,7 +97,7 @@ public static class SampleListener implements ServiceListener {
 	@Override
 	public void serviceResolved(ServiceEvent event) {
 		// TODO Auto-generated method stub
-		System.out.print("Service resolved: " + event.getName());
+		System.out.print("Service resolved: " + event.getName() + "\n");
 		
 		ServiceInfo info = event.getInfo();
 		int port = info.getPort();
@@ -107,9 +111,11 @@ public static class SampleListener implements ServiceListener {
 	 */
 	public static void main(String[] args) {
 		try {
+			//create a JmDNS instance
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			//add a service listener
 			jmdns.addServiceListener("_grpc._tcp.local.", new SampleListener());
-			
+		//Create channels and declare ports for each service	
 		ManagedChannel RoomControlChannel = ManagedChannelBuilder
 				.forAddress("localhost", 4200)
 				.usePlaintext()
@@ -122,11 +128,14 @@ public static class SampleListener implements ServiceListener {
 				.forAddress("localHost", 4202)
 				.usePlaintext()
 				.build();
+		
+		String jwt = getJwt();
+	    BearerToken token = new BearerToken(getJwt());
 				
-		asyncRoom_controlStub = Room_controlGrpc.newStub(RoomControlChannel);
-		blockingRoom_controlStub = Room_controlGrpc.newBlockingStub(RoomControlChannel);
-		asynctools_and_interfaceStub = tools_and_interfaceGrpc.newStub(ToolsAndInterfaceChannel);
-		asyncSmart_IntravenousStub = Smart_IntravenousGrpc.newStub(SmartIntravenousChannel);
+		asyncRoom_controlStub = Room_controlGrpc.newStub(RoomControlChannel).withCallCredentials(token);
+		blockingRoom_controlStub = Room_controlGrpc.newBlockingStub(RoomControlChannel).withCallCredentials(token);
+		asynctools_and_interfaceStub = tools_and_interfaceGrpc.newStub(ToolsAndInterfaceChannel).withCallCredentials(token);
+		asyncSmart_IntravenousStub = Smart_IntravenousGrpc.newStub(SmartIntravenousChannel).withCallCredentials(token);
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -188,9 +197,9 @@ public static class SampleListener implements ServiceListener {
 		SendBtnS1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-					int IntensitySpnr = (int) LightsSpinner.getValue();
+					int IntensitySpnr = (int) LightsSpinner.getValue(); //extracts info from the related spinner
 					
-					changeIntensity request = changeIntensity.newBuilder().setLevel(IntensitySpnr).build();
+					changeIntensity request = changeIntensity.newBuilder().setLevel(IntensitySpnr).build(); //declares and builds the request to be send to the server
 					StreamObserver<lightsIntensity> observer = new StreamObserver<lightsIntensity>() {
 
 						@Override
@@ -258,7 +267,7 @@ public static class SampleListener implements ServiceListener {
 		S2txtArea.setLineWrap(true);
 		S2txtArea.setEditable(false);
 				
-//		Set reminder
+//		Set reminder method
 		JButton setBtn = new JButton("Set");
 		setBtn.setBounds(70, 92, 58, 21);
 		setBtn.addActionListener(new ActionListener() {
@@ -270,7 +279,7 @@ public static class SampleListener implements ServiceListener {
 							String confirmation = String.format("Remider confirmation received:\n%s%n",
 									response.getConfirmed());
 							S2txtArea.append("\n" + confirmation);
-							System.out.printf(confirmation);
+							System.out.println(confirmation);
 						}
 						
 						@Override
@@ -285,14 +294,13 @@ public static class SampleListener implements ServiceListener {
 					
 					});
 					
-					/*observerInfo.onNext(personalInfo.newBuilder().setEventRmnd(event).setRemindDate(date).build());
-					observerInfo.onNext(personalInfo.newBuilder().setEventRmnd(event).setRemindDate(date).build());*/
 					if(PreEvent.isEmpty()) {
-						S2txtArea.append("There is no info to be send \n");
+						S2txtArea.append("There is no info to be send \n"); //method to let the user know that there is no info to be sent contained in the local array
 					}
 					else {
 					for(int i=0; i < PreEvent.size(); i+=2) {
-						observerInfo.onNext(personalInfo.newBuilder().setEventRmnd(PreEvent.get(i)).setRemindDate(PreEvent.get(i+1)).build());
+						//for each iteration the "for loop" sends the info contained in the stated indexes to the server as a stream 
+						observerInfo.onNext(personalInfo.newBuilder().setEventRmnd(PreEvent.get(i)).setRemindDate(PreEvent.get(i+1)).build()); //declares and builds the request to be send to the server
 						}
 					}
 					observerInfo.onCompleted();
@@ -323,11 +331,11 @@ public static class SampleListener implements ServiceListener {
 		FRspinner.setBounds(10, 47, 96, 20);
 		panel_2.add(FRspinner);
 		
-//		set flow rate service
+//		set flow rate method
 		JButton setFlowBtn = new JButton("Set Rate");
 		setFlowBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int flowSpnr = (int) FRspinner.getValue();
+				int flowSpnr = (int) FRspinner.getValue(); //extracts the integer from the related spinner in the GUI
 				flowRate request = flowRate.newBuilder().setDropsPS(flowSpnr).build();
 				StreamObserver<confirmFRate> observer = new StreamObserver<confirmFRate>() {
 
@@ -366,8 +374,8 @@ public static class SampleListener implements ServiceListener {
 		JButton sendStatusBtn = new JButton("Send Status");
 		sendStatusBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String statusCB = (String) alertCB.getSelectedItem();
-				sendStatus request = sendStatus.newBuilder().setStatus(statusCB).build();
+				String statusCB = (String) alertCB.getSelectedItem(); //extracts the text from the related combo box
+				sendStatus request = sendStatus.newBuilder().setStatus(statusCB).build(); //declares and builds the request to be send to the server
 				StreamObserver<alertMessage> observer = new StreamObserver<alertMessage>() {
 
 					@Override
@@ -412,7 +420,7 @@ public static class SampleListener implements ServiceListener {
 		addBtn.setBounds(10, 92, 58, 21);
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				//this method handdles all the information added by the user through the GUI and stores it in an local array
 				event = eventFld.getText();
 				date = dateFld.getText();
 				
@@ -472,7 +480,7 @@ public static class SampleListener implements ServiceListener {
 						public void onNext(ResponseMessage response) {
 							String greetResponse = String.format("Received response: %s, confirmInComp: %s\n",
 									response.getGreetingText(),
-//									response.getName(),
+//									response.getName(), //primarily I added this getter but then I commented it as it is already stated in each GreetingText
 									response.getConfirmInComp() + ", Room Time: " + response.getRoomTime());
 							greetTxtxA.append(greetResponse);
 							System.out.print(greetResponse);
@@ -490,12 +498,12 @@ public static class SampleListener implements ServiceListener {
 					
 					});
 					if(PreGreeting.isEmpty()) {
-						greetTxtxA.append("There is no info to be send \n");
+						greetTxtxA.append("There is no info to be send \n"); //checks if the local array is empty, if it is then sends a message stating that to the user
 					}else {
 						try {
 							for(int i=0; i < PreGreeting.size(); i+=3) {
 								if(i+2 >= PreGreeting.size()) {
-									greetTxtxA.append("There is not enough data \n");
+									greetTxtxA.append("There is not enough data \n"); //if the index is less than 2 then there is not enough data to interact
 									break;
 								}
 								
@@ -513,33 +521,14 @@ public static class SampleListener implements ServiceListener {
 							aE.printStackTrace();
 							requestObserver.onError(aE);
 						}
-					}
-					/*requestObserver.onNext(RequestMessage.newBuilder()
-							.setName(nameFld.getText())
-							.setInsuranceComp(insuranceCoFld.getText())
-							.setUrgencyLvl((String) urgencyCB.getSelectedItem())
-							.build());
-					
-					/*requestObserver.onNext(RequestMessage.newBuilder()
-							.setName("Alan")
-							.setInsuranceComp("Health LLC")
-							.setUrgencyLvl("high")
-							.build());
-					
-					requestObserver.onNext(RequestMessage.newBuilder()
-							.setName("Eric")
-							.setInsuranceComp("St.Patrick LLC")
-							.setUrgencyLvl("medium")
-							.build());*/
-
-					
+					}				
 			}
 		});
 		
 		SubmitBtn.setBounds(165, 116, 85, 21);
 		panel.add(SubmitBtn);
 		
-//		add info to the client array
+//		add info to the client array for the greeting method 
 		JButton addInfoBtn = new JButton("Add info");
 		addInfoBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -548,7 +537,7 @@ public static class SampleListener implements ServiceListener {
 				urgencyLvl = (String) urgencyCB.getSelectedItem();
 				
 				if(name.isEmpty() || name.isBlank() ||insuranceComp.isEmpty()||insuranceComp.isBlank()||urgencyLvl.isEmpty()||urgencyLvl.isBlank()) {
-					JOptionPane.showMessageDialog(null, "Some field has not been filed with information, the info has not been charged to the system");
+					JOptionPane.showMessageDialog(null, "Some fields have not been filed with information, the info has not been charged to the system");
 				}else { 
 				PreGreeting.add(name);
 				PreGreeting.add(insuranceComp);
@@ -559,7 +548,7 @@ public static class SampleListener implements ServiceListener {
 		addInfoBtn.setBounds(10, 116, 85, 21);
 		panel.add(addInfoBtn);
 	}
-	
+//	set the temperature to 15 as a simulation, the server reacts changing the temperature to stay in range
 	public static void temperature(JTextArea S1txtArea) {
 		int temp = 15; 
 		S1txtArea.append("The current temperature is: " + temp + "\n");
@@ -570,4 +559,11 @@ public static class SampleListener implements ServiceListener {
 		S1txtArea.append("The temperature has been adjusted to: " + response.getNewTemp() + "\n");
 		System.out.println("The temperature has been adjusted to: " + response.getNewTemp());
 	}
+	//method for the client to generate a valid token
+	private static String getJwt() {
+        return Jwts.builder()
+                .setSubject("SmartRoomClient")
+                .signWith(SignatureAlgorithm.HS256, Constants.JWT_SIGNING_KEY)
+                .compact();
+    }
 }

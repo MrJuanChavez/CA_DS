@@ -1,7 +1,9 @@
-package SmartRoom;
+package smartRoom;
 
 import java.io.IOException;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 import generated.Smart_Intravenous.Smart_IntravenousGrpc.Smart_IntravenousImplBase;
 import generated.Smart_Intravenous.alertMessage;
@@ -35,21 +37,30 @@ public class SmartIntravenousServer extends Smart_IntravenousImplBase {
 		}
 
 	}
-
+	
+	private ArrayList<Integer> drops = new ArrayList<>();
+	
 	public void setFlowR(flowRate fRate, StreamObserver<confirmFRate> confirmationResponse) {
+		
+		String clientId = Constants.CLIENT_ID_CONTEXT_KEY.get();
+        System.out.println("Processing request from " + clientId);
+        
 		System.out.println("receiving" + fRate.getDropsPS());
 
-		ArrayList<Integer> drops = new ArrayList<>();
+		
 		int dropsPS = fRate.getDropsPS();
 		drops.add(dropsPS);
 		confirmFRate response = null;
 
 		if (drops.isEmpty() || drops.size() == 1) {
 			response = confirmFRate.newBuilder().setSetRate("The rate " + dropsPS + " drops per minute, has been set").build();
-		} else if (dropsPS == drops.get(drops.size() - 2)) {
+			JOptionPane.showMessageDialog(null, response);
+		} else if (dropsPS == drops.get(drops.size()-2)) {
 			response = confirmFRate.newBuilder().setSetRate("Rate already set").build();
+			JOptionPane.showMessageDialog(null, response);
 		} else {
 			response = confirmFRate.newBuilder().setSetRate("The rate " + dropsPS + " drops per minute, has been set").build();
+			JOptionPane.showMessageDialog(null, response);
 		}
 
 		confirmationResponse.onNext(response);
@@ -57,22 +68,29 @@ public class SmartIntravenousServer extends Smart_IntravenousImplBase {
 	}
 
 	public void alertDose(sendStatus sStatus, StreamObserver<alertMessage> alertResponse) {
+		
+		String clientId = Constants.CLIENT_ID_CONTEXT_KEY.get();
+        System.out.println("Processing request from " + clientId);
+		
 		System.out.println("receiving" + sStatus.getStatus());
 		String status = sStatus.getStatus();
 		alertMessage response;
 
 		if (status.isEmpty()) {
 			response = alertMessage.newBuilder()
-					.setAlert("Dose level has not been set")
+					.setAlert("Dose level status has not been stated")
 					.build();
+			JOptionPane.showMessageDialog(null, response);
 		} else if (!status.equals("Regular Dose")) {
 			response = alertMessage.newBuilder()
 					.setAlert("Dose does not match the prescription: calling a healthcare assistant")
 					.build();
+			JOptionPane.showMessageDialog(null, response);
 		}else {
 			response = alertMessage.newBuilder()
 					.setAlert("There is nothing wrong with the dose level.")
 					.build();
+			JOptionPane.showMessageDialog(null, response);
 		}
 
 		alertResponse.onNext(response);

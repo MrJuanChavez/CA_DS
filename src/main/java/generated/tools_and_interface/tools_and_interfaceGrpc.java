@@ -1,19 +1,6 @@
 package generated.tools_and_interface;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+    value = "by gRPC proto compiler (version 1.54.0)",
     comments = "Source: tools_and_interface.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class tools_and_interfaceGrpc {
 
   private tools_and_interfaceGrpc() {}
@@ -44,22 +32,21 @@ public final class tools_and_interfaceGrpc {
     if ((getGreetingsMethod = tools_and_interfaceGrpc.getGreetingsMethod) == null) {
       synchronized (tools_and_interfaceGrpc.class) {
         if ((getGreetingsMethod = tools_and_interfaceGrpc.getGreetingsMethod) == null) {
-          tools_and_interfaceGrpc.getGreetingsMethod = getGreetingsMethod = 
+          tools_and_interfaceGrpc.getGreetingsMethod = getGreetingsMethod =
               io.grpc.MethodDescriptor.<generated.tools_and_interface.RequestMessage, generated.tools_and_interface.ResponseMessage>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "tools_and_interface.tools_and_interface", "greetings"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "greetings"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.tools_and_interface.RequestMessage.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.tools_and_interface.ResponseMessage.getDefaultInstance()))
-                  .setSchemaDescriptor(new tools_and_interfaceMethodDescriptorSupplier("greetings"))
-                  .build();
-          }
+              .setSchemaDescriptor(new tools_and_interfaceMethodDescriptorSupplier("greetings"))
+              .build();
         }
-     }
-     return getGreetingsMethod;
+      }
+    }
+    return getGreetingsMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<generated.tools_and_interface.personalInfo,
@@ -76,29 +63,35 @@ public final class tools_and_interfaceGrpc {
     if ((getRemindersMethod = tools_and_interfaceGrpc.getRemindersMethod) == null) {
       synchronized (tools_and_interfaceGrpc.class) {
         if ((getRemindersMethod = tools_and_interfaceGrpc.getRemindersMethod) == null) {
-          tools_and_interfaceGrpc.getRemindersMethod = getRemindersMethod = 
+          tools_and_interfaceGrpc.getRemindersMethod = getRemindersMethod =
               io.grpc.MethodDescriptor.<generated.tools_and_interface.personalInfo, generated.tools_and_interface.confirmationResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "tools_and_interface.tools_and_interface", "reminders"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "reminders"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.tools_and_interface.personalInfo.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.tools_and_interface.confirmationResponse.getDefaultInstance()))
-                  .setSchemaDescriptor(new tools_and_interfaceMethodDescriptorSupplier("reminders"))
-                  .build();
-          }
+              .setSchemaDescriptor(new tools_and_interfaceMethodDescriptorSupplier("reminders"))
+              .build();
         }
-     }
-     return getRemindersMethod;
+      }
+    }
+    return getRemindersMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static tools_and_interfaceStub newStub(io.grpc.Channel channel) {
-    return new tools_and_interfaceStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<tools_and_interfaceStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<tools_and_interfaceStub>() {
+        @java.lang.Override
+        public tools_and_interfaceStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new tools_and_interfaceStub(channel, callOptions);
+        }
+      };
+    return tools_and_interfaceStub.newStub(factory, channel);
   }
 
   /**
@@ -106,7 +99,14 @@ public final class tools_and_interfaceGrpc {
    */
   public static tools_and_interfaceBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new tools_and_interfaceBlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<tools_and_interfaceBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<tools_and_interfaceBlockingStub>() {
+        @java.lang.Override
+        public tools_and_interfaceBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new tools_and_interfaceBlockingStub(channel, callOptions);
+        }
+      };
+    return tools_and_interfaceBlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -114,7 +114,14 @@ public final class tools_and_interfaceGrpc {
    */
   public static tools_and_interfaceFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new tools_and_interfaceFutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<tools_and_interfaceFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<tools_and_interfaceFutureStub>() {
+        @java.lang.Override
+        public tools_and_interfaceFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new tools_and_interfaceFutureStub(channel, callOptions);
+        }
+      };
+    return tools_and_interfaceFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -122,60 +129,53 @@ public final class tools_and_interfaceGrpc {
    * Interface exported by the server.
    * </pre>
    */
-  public static abstract class tools_and_interfaceImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public io.grpc.stub.StreamObserver<generated.tools_and_interface.RequestMessage> greetings(
+    default io.grpc.stub.StreamObserver<generated.tools_and_interface.RequestMessage> greetings(
         io.grpc.stub.StreamObserver<generated.tools_and_interface.ResponseMessage> responseObserver) {
-      return asyncUnimplementedStreamingCall(getGreetingsMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getGreetingsMethod(), responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<generated.tools_and_interface.personalInfo> reminders(
+    default io.grpc.stub.StreamObserver<generated.tools_and_interface.personalInfo> reminders(
         io.grpc.stub.StreamObserver<generated.tools_and_interface.confirmationResponse> responseObserver) {
-      return asyncUnimplementedStreamingCall(getRemindersMethod(), responseObserver);
+      return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getRemindersMethod(), responseObserver);
     }
+  }
+
+  /**
+   * Base class for the server implementation of the service tools_and_interface.
+   * <pre>
+   * Interface exported by the server.
+   * </pre>
+   */
+  public static abstract class tools_and_interfaceImplBase
+      implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getGreetingsMethod(),
-            asyncBidiStreamingCall(
-              new MethodHandlers<
-                generated.tools_and_interface.RequestMessage,
-                generated.tools_and_interface.ResponseMessage>(
-                  this, METHODID_GREETINGS)))
-          .addMethod(
-            getRemindersMethod(),
-            asyncClientStreamingCall(
-              new MethodHandlers<
-                generated.tools_and_interface.personalInfo,
-                generated.tools_and_interface.confirmationResponse>(
-                  this, METHODID_REMINDERS)))
-          .build();
+      return tools_and_interfaceGrpc.bindService(this);
     }
   }
 
   /**
+   * A stub to allow clients to do asynchronous rpc calls to service tools_and_interface.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class tools_and_interfaceStub extends io.grpc.stub.AbstractStub<tools_and_interfaceStub> {
-    private tools_and_interfaceStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private tools_and_interfaceStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class tools_and_interfaceStub
+      extends io.grpc.stub.AbstractAsyncStub<tools_and_interfaceStub> {
+    private tools_and_interfaceStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected tools_and_interfaceStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected tools_and_interfaceStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new tools_and_interfaceStub(channel, callOptions);
     }
 
@@ -183,7 +183,7 @@ public final class tools_and_interfaceGrpc {
      */
     public io.grpc.stub.StreamObserver<generated.tools_and_interface.RequestMessage> greetings(
         io.grpc.stub.StreamObserver<generated.tools_and_interface.ResponseMessage> responseObserver) {
-      return asyncBidiStreamingCall(
+      return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getGreetingsMethod(), getCallOptions()), responseObserver);
     }
 
@@ -191,51 +191,47 @@ public final class tools_and_interfaceGrpc {
      */
     public io.grpc.stub.StreamObserver<generated.tools_and_interface.personalInfo> reminders(
         io.grpc.stub.StreamObserver<generated.tools_and_interface.confirmationResponse> responseObserver) {
-      return asyncClientStreamingCall(
+      return io.grpc.stub.ClientCalls.asyncClientStreamingCall(
           getChannel().newCall(getRemindersMethod(), getCallOptions()), responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service tools_and_interface.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class tools_and_interfaceBlockingStub extends io.grpc.stub.AbstractStub<tools_and_interfaceBlockingStub> {
-    private tools_and_interfaceBlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private tools_and_interfaceBlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class tools_and_interfaceBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<tools_and_interfaceBlockingStub> {
+    private tools_and_interfaceBlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected tools_and_interfaceBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected tools_and_interfaceBlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new tools_and_interfaceBlockingStub(channel, callOptions);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service tools_and_interface.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class tools_and_interfaceFutureStub extends io.grpc.stub.AbstractStub<tools_and_interfaceFutureStub> {
-    private tools_and_interfaceFutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private tools_and_interfaceFutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class tools_and_interfaceFutureStub
+      extends io.grpc.stub.AbstractFutureStub<tools_and_interfaceFutureStub> {
+    private tools_and_interfaceFutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected tools_and_interfaceFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected tools_and_interfaceFutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new tools_and_interfaceFutureStub(channel, callOptions);
     }
   }
@@ -248,10 +244,10 @@ public final class tools_and_interfaceGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final tools_and_interfaceImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(tools_and_interfaceImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -280,6 +276,25 @@ public final class tools_and_interfaceGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getGreetingsMethod(),
+          io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
+            new MethodHandlers<
+              generated.tools_and_interface.RequestMessage,
+              generated.tools_and_interface.ResponseMessage>(
+                service, METHODID_GREETINGS)))
+        .addMethod(
+          getRemindersMethod(),
+          io.grpc.stub.ServerCalls.asyncClientStreamingCall(
+            new MethodHandlers<
+              generated.tools_and_interface.personalInfo,
+              generated.tools_and_interface.confirmationResponse>(
+                service, METHODID_REMINDERS)))
+        .build();
   }
 
   private static abstract class tools_and_interfaceBaseDescriptorSupplier

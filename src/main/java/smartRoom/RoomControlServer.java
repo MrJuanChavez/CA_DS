@@ -1,4 +1,4 @@
-package SmartRoom;
+package smartRoom;
 
 import java.io.IOException;
 
@@ -40,7 +40,10 @@ public class RoomControlServer extends Room_controlImplBase{
 	}
 	
 	public void lights (changeIntensity intensityLvl, StreamObserver <lightsIntensity> responseIntensity) {
-		System.out.println("receiving" + intensityLvl.getLevel());
+		String clientId = Constants.CLIENT_ID_CONTEXT_KEY.get();
+        System.out.println("Processing request from " + clientId);
+		
+        System.out.println("receiving" + intensityLvl.getLevel());
 		
 		int intensity = 1;
 		String location = "Reception";

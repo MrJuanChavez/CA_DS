@@ -1,4 +1,4 @@
-package SmartRoom;
+package smartRoom;
 
 import java.awt.event.ActionEvent;
 
@@ -24,6 +24,7 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+//This is a class I created as a Client to try the servers before I made the GUI I left it in the project as a backlog of the process
 public class HospitalRoomClient {
 	private static Room_controlStub asyncRoom_controlStub;
 	private static Room_controlBlockingStub blockingRoom_controlStub;

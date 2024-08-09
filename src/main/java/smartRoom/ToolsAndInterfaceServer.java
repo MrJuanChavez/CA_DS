@@ -1,4 +1,4 @@
-package SmartRoom;
+package smartRoom;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,9 +42,11 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 
 	
 	public StreamObserver<RequestMessage> greetings (StreamObserver<ResponseMessage> responseGreeting ){
-		ArrayList <String> Welcome = new ArrayList<>();
+//		ArrayList <String> Welcome = new ArrayList<>();
+		String clientId = Constants.CLIENT_ID_CONTEXT_KEY.get();
+        System.out.println("Processing request from " + clientId);
 		return new StreamObserver <RequestMessage>() {
-			
+		            
 			@Override
 			public void onNext(RequestMessage greetingMsg){
 				System.out.printf("receiving %s, %s and %s", 
@@ -59,7 +61,7 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 				boolean confirmInComp = true;
 				int roomTime;
 				
-				if(insuranceComp.equals("N/A")) {
+				if(insuranceComp.equalsIgnoreCase("N/A")) {
 					confirmInComp = false;
 					roomTime = 7;
 				}else if(urgencyLvl.equals("low")){
@@ -119,6 +121,10 @@ public class ToolsAndInterfaceServer extends tools_and_interfaceImplBase{
 
 	
 	public StreamObserver<personalInfo> reminders(StreamObserver<confirmationResponse> responseObserver){
+		
+		String clientId = Constants.CLIENT_ID_CONTEXT_KEY.get();
+        System.out.println("Processing request from " + clientId);
+        
 		ArrayList<String>events = new ArrayList<>();
 		
 		return new StreamObserver <personalInfo>() {

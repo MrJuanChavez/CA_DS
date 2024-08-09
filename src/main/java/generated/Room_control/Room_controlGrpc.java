@@ -1,19 +1,6 @@
 package generated.Room_control;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
-import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ClientCalls.asyncUnaryCall;
-import static io.grpc.stub.ClientCalls.blockingServerStreamingCall;
-import static io.grpc.stub.ClientCalls.blockingUnaryCall;
-import static io.grpc.stub.ClientCalls.futureUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncBidiStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncClientStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncServerStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnaryCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
@@ -21,8 +8,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  * </pre>
  */
 @javax.annotation.Generated(
-    value = "by gRPC proto compiler (version 1.15.0)",
+    value = "by gRPC proto compiler (version 1.54.0)",
     comments = "Source: Room_control.proto")
+@io.grpc.stub.annotations.GrpcGenerated
 public final class Room_controlGrpc {
 
   private Room_controlGrpc() {}
@@ -44,22 +32,21 @@ public final class Room_controlGrpc {
     if ((getLightsMethod = Room_controlGrpc.getLightsMethod) == null) {
       synchronized (Room_controlGrpc.class) {
         if ((getLightsMethod = Room_controlGrpc.getLightsMethod) == null) {
-          Room_controlGrpc.getLightsMethod = getLightsMethod = 
+          Room_controlGrpc.getLightsMethod = getLightsMethod =
               io.grpc.MethodDescriptor.<generated.Room_control.changeIntensity, generated.Room_control.lightsIntensity>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-              .setFullMethodName(generateFullMethodName(
-                  "Room_control.Room_control", "lights"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "lights"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Room_control.changeIntensity.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Room_control.lightsIntensity.getDefaultInstance()))
-                  .setSchemaDescriptor(new Room_controlMethodDescriptorSupplier("lights"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Room_controlMethodDescriptorSupplier("lights"))
+              .build();
         }
-     }
-     return getLightsMethod;
+      }
+    }
+    return getLightsMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<generated.Room_control.adjustTemperature,
@@ -76,29 +63,35 @@ public final class Room_controlGrpc {
     if ((getTemperatureMethod = Room_controlGrpc.getTemperatureMethod) == null) {
       synchronized (Room_controlGrpc.class) {
         if ((getTemperatureMethod = Room_controlGrpc.getTemperatureMethod) == null) {
-          Room_controlGrpc.getTemperatureMethod = getTemperatureMethod = 
+          Room_controlGrpc.getTemperatureMethod = getTemperatureMethod =
               io.grpc.MethodDescriptor.<generated.Room_control.adjustTemperature, generated.Room_control.newTemperature>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(
-                  "Room_control.Room_control", "temperature"))
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "temperature"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Room_control.adjustTemperature.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   generated.Room_control.newTemperature.getDefaultInstance()))
-                  .setSchemaDescriptor(new Room_controlMethodDescriptorSupplier("temperature"))
-                  .build();
-          }
+              .setSchemaDescriptor(new Room_controlMethodDescriptorSupplier("temperature"))
+              .build();
         }
-     }
-     return getTemperatureMethod;
+      }
+    }
+    return getTemperatureMethod;
   }
 
   /**
    * Creates a new async stub that supports all call types for the service
    */
   public static Room_controlStub newStub(io.grpc.Channel channel) {
-    return new Room_controlStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Room_controlStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Room_controlStub>() {
+        @java.lang.Override
+        public Room_controlStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Room_controlStub(channel, callOptions);
+        }
+      };
+    return Room_controlStub.newStub(factory, channel);
   }
 
   /**
@@ -106,7 +99,14 @@ public final class Room_controlGrpc {
    */
   public static Room_controlBlockingStub newBlockingStub(
       io.grpc.Channel channel) {
-    return new Room_controlBlockingStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Room_controlBlockingStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Room_controlBlockingStub>() {
+        @java.lang.Override
+        public Room_controlBlockingStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Room_controlBlockingStub(channel, callOptions);
+        }
+      };
+    return Room_controlBlockingStub.newStub(factory, channel);
   }
 
   /**
@@ -114,7 +114,14 @@ public final class Room_controlGrpc {
    */
   public static Room_controlFutureStub newFutureStub(
       io.grpc.Channel channel) {
-    return new Room_controlFutureStub(channel);
+    io.grpc.stub.AbstractStub.StubFactory<Room_controlFutureStub> factory =
+      new io.grpc.stub.AbstractStub.StubFactory<Room_controlFutureStub>() {
+        @java.lang.Override
+        public Room_controlFutureStub newStub(io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
+          return new Room_controlFutureStub(channel, callOptions);
+        }
+      };
+    return Room_controlFutureStub.newStub(factory, channel);
   }
 
   /**
@@ -122,60 +129,53 @@ public final class Room_controlGrpc {
    * Interface exported by the server.
    * </pre>
    */
-  public static abstract class Room_controlImplBase implements io.grpc.BindableService {
+  public interface AsyncService {
 
     /**
      */
-    public void lights(generated.Room_control.changeIntensity request,
+    default void lights(generated.Room_control.changeIntensity request,
         io.grpc.stub.StreamObserver<generated.Room_control.lightsIntensity> responseObserver) {
-      asyncUnimplementedUnaryCall(getLightsMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getLightsMethod(), responseObserver);
     }
 
     /**
      */
-    public void temperature(generated.Room_control.adjustTemperature request,
+    default void temperature(generated.Room_control.adjustTemperature request,
         io.grpc.stub.StreamObserver<generated.Room_control.newTemperature> responseObserver) {
-      asyncUnimplementedUnaryCall(getTemperatureMethod(), responseObserver);
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getTemperatureMethod(), responseObserver);
     }
+  }
+
+  /**
+   * Base class for the server implementation of the service Room_control.
+   * <pre>
+   * Interface exported by the server.
+   * </pre>
+   */
+  public static abstract class Room_controlImplBase
+      implements io.grpc.BindableService, AsyncService {
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
-      return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
-          .addMethod(
-            getLightsMethod(),
-            asyncServerStreamingCall(
-              new MethodHandlers<
-                generated.Room_control.changeIntensity,
-                generated.Room_control.lightsIntensity>(
-                  this, METHODID_LIGHTS)))
-          .addMethod(
-            getTemperatureMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                generated.Room_control.adjustTemperature,
-                generated.Room_control.newTemperature>(
-                  this, METHODID_TEMPERATURE)))
-          .build();
+      return Room_controlGrpc.bindService(this);
     }
   }
 
   /**
+   * A stub to allow clients to do asynchronous rpc calls to service Room_control.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class Room_controlStub extends io.grpc.stub.AbstractStub<Room_controlStub> {
-    private Room_controlStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Room_controlStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Room_controlStub
+      extends io.grpc.stub.AbstractAsyncStub<Room_controlStub> {
+    private Room_controlStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Room_controlStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Room_controlStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Room_controlStub(channel, callOptions);
     }
 
@@ -183,7 +183,7 @@ public final class Room_controlGrpc {
      */
     public void lights(generated.Room_control.changeIntensity request,
         io.grpc.stub.StreamObserver<generated.Room_control.lightsIntensity> responseObserver) {
-      asyncServerStreamingCall(
+      io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getLightsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -191,29 +191,27 @@ public final class Room_controlGrpc {
      */
     public void temperature(generated.Room_control.adjustTemperature request,
         io.grpc.stub.StreamObserver<generated.Room_control.newTemperature> responseObserver) {
-      asyncUnaryCall(
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getTemperatureMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
   /**
+   * A stub to allow clients to do synchronous rpc calls to service Room_control.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class Room_controlBlockingStub extends io.grpc.stub.AbstractStub<Room_controlBlockingStub> {
-    private Room_controlBlockingStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Room_controlBlockingStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Room_controlBlockingStub
+      extends io.grpc.stub.AbstractBlockingStub<Room_controlBlockingStub> {
+    private Room_controlBlockingStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Room_controlBlockingStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Room_controlBlockingStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Room_controlBlockingStub(channel, callOptions);
     }
 
@@ -221,36 +219,34 @@ public final class Room_controlGrpc {
      */
     public java.util.Iterator<generated.Room_control.lightsIntensity> lights(
         generated.Room_control.changeIntensity request) {
-      return blockingServerStreamingCall(
+      return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getLightsMethod(), getCallOptions(), request);
     }
 
     /**
      */
     public generated.Room_control.newTemperature temperature(generated.Room_control.adjustTemperature request) {
-      return blockingUnaryCall(
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getTemperatureMethod(), getCallOptions(), request);
     }
   }
 
   /**
+   * A stub to allow clients to do ListenableFuture-style rpc calls to service Room_control.
    * <pre>
    * Interface exported by the server.
    * </pre>
    */
-  public static final class Room_controlFutureStub extends io.grpc.stub.AbstractStub<Room_controlFutureStub> {
-    private Room_controlFutureStub(io.grpc.Channel channel) {
-      super(channel);
-    }
-
-    private Room_controlFutureStub(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+  public static final class Room_controlFutureStub
+      extends io.grpc.stub.AbstractFutureStub<Room_controlFutureStub> {
+    private Room_controlFutureStub(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       super(channel, callOptions);
     }
 
     @java.lang.Override
-    protected Room_controlFutureStub build(io.grpc.Channel channel,
-        io.grpc.CallOptions callOptions) {
+    protected Room_controlFutureStub build(
+        io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
       return new Room_controlFutureStub(channel, callOptions);
     }
 
@@ -258,7 +254,7 @@ public final class Room_controlGrpc {
      */
     public com.google.common.util.concurrent.ListenableFuture<generated.Room_control.newTemperature> temperature(
         generated.Room_control.adjustTemperature request) {
-      return futureUnaryCall(
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getTemperatureMethod(), getCallOptions()), request);
     }
   }
@@ -271,10 +267,10 @@ public final class Room_controlGrpc {
       io.grpc.stub.ServerCalls.ServerStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.ClientStreamingMethod<Req, Resp>,
       io.grpc.stub.ServerCalls.BidiStreamingMethod<Req, Resp> {
-    private final Room_controlImplBase serviceImpl;
+    private final AsyncService serviceImpl;
     private final int methodId;
 
-    MethodHandlers(Room_controlImplBase serviceImpl, int methodId) {
+    MethodHandlers(AsyncService serviceImpl, int methodId) {
       this.serviceImpl = serviceImpl;
       this.methodId = methodId;
     }
@@ -305,6 +301,25 @@ public final class Room_controlGrpc {
           throw new AssertionError();
       }
     }
+  }
+
+  public static final io.grpc.ServerServiceDefinition bindService(AsyncService service) {
+    return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
+        .addMethod(
+          getLightsMethod(),
+          io.grpc.stub.ServerCalls.asyncServerStreamingCall(
+            new MethodHandlers<
+              generated.Room_control.changeIntensity,
+              generated.Room_control.lightsIntensity>(
+                service, METHODID_LIGHTS)))
+        .addMethod(
+          getTemperatureMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              generated.Room_control.adjustTemperature,
+              generated.Room_control.newTemperature>(
+                service, METHODID_TEMPERATURE)))
+        .build();
   }
 
   private static abstract class Room_controlBaseDescriptorSupplier
